@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+ <!-- DatePicker JavaScript & CSS -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+	 <h:outputScript library="js" name="formatDatePicker.js" />
+	 <h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>Add Employee Page</title>
+
+	<style type="text/css">
+        .col-xs-updated {        
+            width: 92% !important;
+        }
+    </style>
+
+</h:head>
+<h:body>
+	<ui:composition template="templates/templates.xhtml">
+		<ui:define name="container">
+			<h:form>
+			<h2><h:outputLabel value="Add Designation Information"/></h2>
+			<h:panelGrid columns="3" border = "0" cellpadding = "5" cellspacing = "15">
+				<h:outputLabel value="Designation Id" />
+				<h:inputText id="designationid" value="#{designation.designationId}">
+				<f:validator validatorId="DesignationIdValidator"></f:validator>
+					<f:converter converterId="DesignationIdConverter"></f:converter>
+					</h:inputText>
+				<h:message for="designationid" style="color:red"></h:message>		
+				
+				<h:outputLabel value="Designation Name" />
+				<h:inputText id="designationname" value="#{designation.designationName}">
+					<f:validator validatorId="DesignationNameValidator"></f:validator>
+					<f:converter converterId="DesignationNameConverter"></f:converter>
+				</h:inputText>
+				<h:message for="designationname" style="color:red"></h:message>
+
+				
+				<h:outputLabel value="Email Id " />
+				<h:inputText id="emailId" value="#{designation.designationEmailId}">
+					<f:validator validatorId="EmailValidator"></f:validator>
+					<f:converter converterId="EmailConverter"></f:converter>
+				</h:inputText>
+				<h:message for="emailId" style="color:red"></h:message>
+		
+				<h:outputLabel value="DOB " />
+			
+				<h:inputText id="dateofbirth" value="#{designation.designationDateOfBirth}"
+				styleClass="form-control datepicker">
+					
+				</h:inputText>
+				<h:message for="dateofbirth" style="color:red"></h:message>
+				
+				<h:commandButton value="Submit" action="#{designation.addDesignation}" />
+				<h:commandButton value="Reset" />
+			</h:panelGrid>
+				
+				<h:dataTable var="row" value="#{designation.designations}"
+					border="1" align="center">
+
+					<h:column align="center">
+						<f:facet name="header">Designation Id</f:facet>
+						<h:outputText value="#{row.designationId}"></h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Designation Name</f:facet>
+						<h:outputText value="#{row.designationName}"></h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Designation EmailID</f:facet>
+						<h:outputText value="#{row.designationEmailId}"></h:outputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">DOB </f:facet>
+						<h:outputText value="#{row.designationDateOfBirth}"></h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+						<h:commandButton value="Update" action="#{designation.editDesignation(row)}" />
+						<h:commandButton value="Delete" action="#{designation.deleteDesignation(row)}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

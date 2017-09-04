@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+<managed-bean>
+    	<managed-bean-name>user</managed-bean-name>
+    	<managed-bean-class>com.jsf.checkbox.UserBeanCheckBox</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>userradiobutton</managed-bean-name>
+    	<managed-bean-class>com.jsf.radiobutton.UserBeanRadioButton</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>userlistbox</managed-bean-name>
+    	<managed-bean-class>com.jsf.listbox.UserBeanListBox</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>usermultiplelistbox</managed-bean-name>
+    	<managed-bean-class>com.jsf.multiplelistbox.UserBeanMultipleListBox</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>userdropdown</managed-bean-name>
+    	<managed-bean-class>com.jsf.dropdown.UserBeanDropDown</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>usermessage</managed-bean-name>
+    	<managed-bean-class>com.jsf.message.UserBeanValidateMessage</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+</faces-config>
