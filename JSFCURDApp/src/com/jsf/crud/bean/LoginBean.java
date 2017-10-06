@@ -1,22 +1,25 @@
 package com.jsf.crud.bean;
 
+import java.util.Properties;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import com.jsf.crud.dao.DatabaseDAO;
-import com.jsf.crud.dao.UserAuthDAO;
+import com.jsf.crud.dao.LdapDAO;
 
 
-@ManagedBean @SessionScoped
+@ManagedBean
+@SessionScoped
 public class LoginBean {
 
 	private String name;
 	private String password;
 	private String userName;
 
-	public LoginBean() {}
+	public LoginBean() {
+	}
 
 	public String getName() {
 		return name;
@@ -41,9 +44,30 @@ public class LoginBean {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	/* Method To Check User's Authentication Credentials */
+
 	public String validateLoginCredentials() {
-		return UserAuthDAO.validateLoginCredentials(userName, password);
-	}	
+		// return UserAuthDAO.validateLoginCredentials(userName, password);
+
+		String validationResult = "";
+		try {
+			if (new LdapDAO().LDAPLookup(userName, password)) {
+				validationResult = "success";
+			} else {
+				validationResult = "login";
+				FacesContext.getCurrentInstance().addMessage(
+						"loginForm:loginName",
+						new FacesMessage("Username Or Password Is Incorrect"));
+			}
+
+		} catch (Exception exObj) {
+			validationResult = "login";
+			FacesContext.getCurrentInstance().addMessage("loginForm:loginName",
+					new FacesMessage("Username Or Password Is Incorrect"));
+		}
+		return validationResult;
+
+	}
+
+	
+
 }

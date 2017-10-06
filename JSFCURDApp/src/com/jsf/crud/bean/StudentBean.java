@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.jsf.crud.dao.DatabaseDAO;
+import com.jsf.crud.dao.LdapDAO;
 
 @ManagedBean @RequestScoped
 public class StudentBean {
@@ -14,7 +15,7 @@ public class StudentBean {
 	private int id;  
 	private String name;  
 	private String email;  
-	private String password;  
+	private String username;  
 	private String gender;  
 	private String address;
 
@@ -44,12 +45,12 @@ public class StudentBean {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getGender() {
@@ -81,6 +82,7 @@ public class StudentBean {
 	
 	/* Method Used To Save New Student Record */
 	public String saveStudentDetails(StudentBean newStudentObj) {
+		//new LdapDAO().addEntry(newStudentObj);
 		return DatabaseDAO.saveStudentDetailsInDB(newStudentObj);
 	}
 	

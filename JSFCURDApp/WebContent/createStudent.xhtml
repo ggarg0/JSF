@@ -48,11 +48,11 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="password" class="control-label col-sm-4">Password:</h:outputLabel>
+            <h:outputLabel for="username" class="control-label col-sm-4">Username:</h:outputLabel>
             <div class="col-sm-4">
-                <h:inputSecret id="password-id" value="#{studentBean.password}" class="form-control" validatorMessage="Password is required">
+                <h:inputText id="username-id" value="#{studentBean.username}" class="form-control" validatorMessage="Username is required">
                     <f:validateRequired/>
-                </h:inputSecret>
+                </h:inputText>
             </div>
         </div>
         <div class="form-group">

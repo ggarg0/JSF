@@ -35,7 +35,7 @@ public class UserAuthDAO {
 	/* Method To Check User's Authentication Credentials */
 	public static String validateLoginCredentials(String user, String password) {
 		String validationResult = "";
-		LoginBean obj = new LoginBean();
+	//	LoginBean obj = new LoginBean();
 		try {
 			stmtObj = getConnection().createStatement();  
 			String Query = "select * from students where student_name = '"+ user + "' and student_password = '" + password +"'";

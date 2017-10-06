@@ -44,7 +44,7 @@ public class DatabaseDAO {
 				stuObj.setId(resultSetObj.getInt("student_id"));  
 				stuObj.setName(resultSetObj.getString("student_name"));  
 				stuObj.setEmail(resultSetObj.getString("student_email"));  
-				stuObj.setPassword(resultSetObj.getString("student_password"));  
+				stuObj.setUsername(resultSetObj.getString("student_username"));  
 				stuObj.setGender(resultSetObj.getString("student_gender"));  
 				stuObj.setAddress(resultSetObj.getString("student_address"));  
 				studentsList.add(stuObj);  
@@ -63,12 +63,12 @@ public class DatabaseDAO {
 		String navigationResult = "";
 		try {      
 			pstmt = getConnection().prepareStatement("insert into students "
-					+ "(student_id, student_name, student_email, student_password, student_gender, student_address)"
+					+ "(student_id, student_name, student_email, student_username, student_gender, student_address)"
 					+ " values (?, ?, ?, ?, ?, ?)");	
 			pstmt.setInt(1, newStudentObj.getId());
 			pstmt.setString(2, newStudentObj.getName());
 			pstmt.setString(3, newStudentObj.getEmail());
-			pstmt.setString(4, newStudentObj.getPassword());
+			pstmt.setString(4, newStudentObj.getUsername());
 			pstmt.setString(5, newStudentObj.getGender());
 			pstmt.setString(6, newStudentObj.getAddress());
 			saveResult = pstmt.executeUpdate();
@@ -77,6 +77,7 @@ public class DatabaseDAO {
 			sqlException.printStackTrace();
 		}
 		if(saveResult !=0) {
+			
 			navigationResult = "studentsList.xhtml?faces-redirect=true";
 		} else {
 			navigationResult = "createStudent.xhtml?faces-redirect=true";
@@ -103,7 +104,7 @@ public class DatabaseDAO {
 				editRecord.setEmail(resultSetObj.getString("student_email"));
 				editRecord.setGender(resultSetObj.getString("student_gender"));
 				editRecord.setAddress(resultSetObj.getString("student_address"));
-				editRecord.setPassword(resultSetObj.getString("student_password")); 
+				editRecord.setUsername(resultSetObj.getString("student_username")); 
 			}
 			sessionMapObj.put("editRecordObj", editRecord);
 			connObj.close();
@@ -116,10 +117,10 @@ public class DatabaseDAO {
 	/* Method Used To Update Student Record In Database */
 	public static String updateStudentDetailsInDB(StudentBean updateStudentObj) {
 		try {
-			pstmt = getConnection().prepareStatement("update students set student_name=?, student_email=?, student_password=?, student_gender=?, student_address=? where student_id=?");    
+			pstmt = getConnection().prepareStatement("update students set student_name=?, student_email=?, student_username=?, student_gender=?, student_address=? where student_id=?");    
 			pstmt.setString(1,updateStudentObj.getName());  
 			pstmt.setString(2,updateStudentObj.getEmail());  
-			pstmt.setString(3,updateStudentObj.getPassword());  
+			pstmt.setString(3,updateStudentObj.getUsername());  
 			pstmt.setString(4,updateStudentObj.getGender());  
 			pstmt.setString(5,updateStudentObj.getAddress());  
 			pstmt.setInt(6,updateStudentObj.getId());  
